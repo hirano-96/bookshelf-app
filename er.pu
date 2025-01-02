@@ -1,0 +1,51 @@
+@startuml ReadingAnalysisER
+
+!define MASTER <<M, A2A0CE>> #e0ffff
+!define TRANSACTION <<T, FDB654>> #e0ffff
+
+entity "authors" MASTER {
+	+<b>id / ID : UUID
+	author / 作者 : string
+    user_id / ユーザーID : UUID
+}
+entity "users" MASTER {
+	+<b>id / ID : UUID
+    u_name / ユーザー名 : string
+	u_password / パスワード : string
+}
+entity "categories" MASTER {
+	+<b>id / ID : UUID
+	c_name / カテゴリ名 : string
+    user_id / ユーザーID : UUID
+}
+entity "books" MASTER {
+	+<b>id / ID : UUID
+    author_id / 作者ID : UUID
+    category_id / カテゴリID : UUID
+	title / タイトル : string
+	publish / 出版社 : string
+	publish_date / 出版日 : string
+	memory_id / 感想ID : UUID
+    user_id / ユーザーID : UUID
+}
+entity "memories" TRANSACTION {
+	+<b>id / ID : UUID
+    s_date / 開始日 : datetime
+	e_date / 終了日 : datetime
+    memory / 感想 : string
+}
+
+
+books -- authors
+books -- categories
+books -- memories
+users -- authors
+users -- categories
+users -- books
+
+
+
+
+
+
+@enduml

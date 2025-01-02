@@ -15,3 +15,8 @@
     mkdir flaskr
     ```
 
+-   サーバ起動
+    ```
+    flask --app flaskr init-db
+    ```
+
